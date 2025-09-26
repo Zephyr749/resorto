@@ -8,11 +8,11 @@ class PasswordHelper:
 
     @staticmethod
     def hash_password(password: str) -> str:
-        return str(bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()))
+        return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-    @staticmethod
-    def verify_password(password: str, hashed_password: str) -> bool:
-        return bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8'))
+    @classmethod
+    def verify_password(self, password: str, storedPassword: str) -> bool:
+        return bcrypt.checkpw(password.encode('utf-8'), storedPassword.encode('utf-8'))
 
 
 class Validator:

@@ -1,12 +1,12 @@
 from modules.db.mongo_client import MongoDBClient
-from modules.db.schemas import UserCreate
+from modules.db.schemas import UserCreate, DBUser
 
 
 class AuthRepository:
     def __init__(self):
         self.db = MongoDBClient.get_instance().get_db()
 
-    def getUserByEmail(self, email:str):
+    def getUserByEmail(self, email:str) -> DBUser | None:
         return self.db.users.find_one({"email":email})
 
     def insertUser(self, user:UserCreate):

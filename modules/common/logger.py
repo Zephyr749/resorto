@@ -4,7 +4,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(lineno)d - %(levelname)s - %(message)s",
     filemode="a",
-    filename='logs.txt'
+    filename='modules/common/logs.txt'
 )
 
 def get_logger(name):
