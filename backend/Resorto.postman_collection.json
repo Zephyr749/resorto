@@ -1,0 +1,720 @@
+{
+	"info": {
+		"_postman_id": "resorto-collection-v2",
+		"name": "Resorto API - Complete Collection",
+		"description": "Complete API collection for Resorto booking system with auto token management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"version": "2.0.0"
+	},
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "authToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "adminToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "spotId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "bookingId",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "1. Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.success && jsonData.data.token) {",
+									"        pm.collectionVariables.set('authToken', jsonData.data.token);",
+									"        console.log('Token saved:', jsonData.data.token);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "register"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.success && jsonData.data.token) {",
+									"        pm.collectionVariables.set('authToken', jsonData.data.token);",
+									"        console.log('Token saved:', jsonData.data.token);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.success && jsonData.data.token) {",
+									"        pm.collectionVariables.set('adminToken', jsonData.data.token);",
+									"        pm.collectionVariables.set('authToken', jsonData.data.token);",
+									"        console.log('Admin token saved:', jsonData.data.token);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@resorto.com\",\n  \"password\": \"admin123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
+						},
+						"description": "Login with admin credentials"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth/profile",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "profile"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Smith\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/profile",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "profile"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newpassword456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/change-password",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "change-password"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Public - Spots",
+			"item": [
+				{
+					"name": "Get All Spots",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/spots",
+							"host": ["{{baseUrl}}"],
+							"path": ["spots"],
+							"query": [
+								{
+									"key": "spotType",
+									"value": "picnic_area",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Spot by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.success && jsonData.data.spot) {",
+									"        pm.collectionVariables.set('spotId', jsonData.data.spot.id);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/spots/{{spotId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["spots", "{{spotId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Availability",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"spotId\": \"{{spotId}}\",\n  \"checkInDate\": \"2025-12-10T12:00:00Z\",\n  \"checkOutDate\": \"2025-12-12T12:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/check-availability",
+							"host": ["{{baseUrl}}"],
+							"path": ["bookings", "check-availability"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. User - Bookings",
+			"item": [
+				{
+					"name": "Create Booking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.success && jsonData.data.booking) {",
+									"        pm.collectionVariables.set('bookingId', jsonData.data.booking.id);",
+									"        console.log('Booking ID saved:', jsonData.data.booking.id);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"spotId\": \"{{spotId}}\",\n  \"checkInDate\": \"2025-12-10T12:00:00Z\",\n  \"checkOutDate\": \"2025-12-12T12:00:00Z\",\n  \"numberOfGuests\": 5,\n  \"specialRequests\": \"Need extra chairs and BBQ setup\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings",
+							"host": ["{{baseUrl}}"],
+							"path": ["bookings"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Bookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bookings/my-bookings",
+							"host": ["{{baseUrl}}"],
+							"path": ["bookings", "my-bookings"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Booking by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{bookingId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["bookings", "{{bookingId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Booking (User)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{bookingId}}/cancel",
+							"host": ["{{baseUrl}}"],
+							"path": ["bookings", "{{bookingId}}", "cancel"]
+						},
+						"description": "Automatic refund: 7+ days before check-in = 100%, <7 days = 0%"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. User - Payments",
+			"item": [
+				{
+					"name": "Initiate Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{bookingId}}/pay",
+							"host": ["{{baseUrl}}"],
+							"path": ["bookings", "{{bookingId}}", "pay"]
+						},
+						"description": "Creates Razorpay order for payment"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"razorpayOrderId\": \"order_xyz\",\n  \"razorpayPaymentId\": \"pay_abc123\",\n  \"razorpaySignature\": \"signature_hash_here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{bookingId}}/verify-payment",
+							"host": ["{{baseUrl}}"],
+							"path": ["bookings", "{{bookingId}}", "verify-payment"]
+						},
+						"description": "Verifies payment signature and confirms booking"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Admin - Spot Management",
+			"item": [
+				{
+					"name": "Create Spot",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.success && jsonData.data.spot) {",
+									"        pm.collectionVariables.set('spotId', jsonData.data.spot.id);",
+									"        console.log('Spot ID saved:', jsonData.data.spot.id);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Lakeside Picnic Area\",\n  \"description\": \"Beautiful spot overlooking the lake with stunning sunset views\",\n  \"spotType\": \"picnic_area\",\n  \"capacity\": 15,\n  \"pricePerDay\": 2000.0,\n  \"amenities\": [\"BBQ Grill\", \"Picnic Tables\", \"Parking\", \"Restrooms\"],\n  \"images\": [\"/images/lakeside1.jpg\", \"/images/lakeside2.jpg\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/spots",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "spots"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Spot",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"pricePerDay\": 2500.0,\n  \"isActive\": true,\n  \"amenities\": [\"BBQ Grill\", \"Picnic Tables\", \"Parking\", \"Restrooms\", \"WiFi\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/spots/{{spotId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "spots", "{{spotId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Spot (Soft)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/spots/{{spotId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "spots", "{{spotId}}"]
+						},
+						"description": "Soft delete - marks spot as inactive"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Spots (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/spots?isActive=false",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "spots"],
+							"query": [
+								{
+									"key": "isActive",
+									"value": "false"
+								},
+								{
+									"key": "spotType",
+									"value": "picnic_area",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all spots including inactive ones"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6. Admin - Booking Management",
+			"item": [
+				{
+					"name": "Get All Bookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/bookings",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "bookings"],
+							"query": [
+								{
+									"key": "status",
+									"value": "confirmed",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Booking by ID (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/bookings/{{bookingId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "bookings", "{{bookingId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Booking - Auto Refund",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reason\": \"Customer requested cancellation\",\n  \"refundOption\": \"auto\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/bookings/{{bookingId}}/cancel",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "bookings", "{{bookingId}}", "cancel"]
+						},
+						"description": "Auto: 7+ days = 100% refund, <7 days = 0% refund"
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Booking - Full Refund",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reason\": \"Service issue - full refund as apology\",\n  \"refundOption\": \"full\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/bookings/{{bookingId}}/cancel",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "bookings", "{{bookingId}}", "cancel"]
+						},
+						"description": "Full: 100% refund regardless of timing"
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Booking - Partial Refund",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reason\": \"Partial service provided\",\n  \"refundOption\": \"partial\",\n  \"refundAmount\": 1000.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/bookings/{{bookingId}}/cancel",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "bookings", "{{bookingId}}", "cancel"]
+						},
+						"description": "Partial: Specify custom refund amount"
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Booking - No Refund",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reason\": \"Customer no-show - policy violation\",\n  \"refundOption\": \"none\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/bookings/{{bookingId}}/cancel",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "bookings", "{{bookingId}}", "cancel"]
+						},
+						"description": "None: No refund regardless of timing"
+					},
+					"response": []
+				},
+				{
+					"name": "Manual Refund (Separate)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reason\": \"Customer complaint - poor service\",\n  \"refundAmount\": 1500.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/bookings/{{bookingId}}/refund",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "bookings", "{{bookingId}}", "refund"]
+						},
+						"description": "For already-cancelled bookings or special cases. Set refundAmount to null for full refund."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Booking Statistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/bookings/stats/overview",
+							"host": ["{{baseUrl}}"],
+							"path": ["admin", "bookings", "stats", "overview"]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

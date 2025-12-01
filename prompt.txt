@@ -1,0 +1,23 @@
+I'm trying to build a online booking system for a picnic spot. The picninc spot also has 2 separate bedrooms too.
+I built some initial user registration api's here.
+
+what I want are:
+
+1st step: Build basic foundation that I can reuse for any other projects
+1. Basic fastapi repo to handle user registration, login, password, profile management etc basic stuff.
+2. All api's should have unit tests prepared with mongo in memory db instance.
+3. ALl functions should also have unit tests.
+4. Postman collection with variables and scripts to store tokens automatically on logins with proper naming conventions.
+5. Integrated with frontend, frontend should be vite react, typescript and any react modern ui libraries like antd, hero etc.
+6. All tested end to end and ready to start without any runtime or build errors.
+7. Once done, let me know so I can test and zip it to move aside.
+8. Have 2 separate folders for backend and frontend.
+
+2nd Step: Build the rest of the functionalities specific to this project.
+1. Users should see a detailed description of what they are booking.
+2. Payment system. Use any one of the popular ones in India.
+2. Use sample images to display, I can change it later. Store the path of images in db so admin can change it.
+3. Admin separate dashboard, admin can modify details, content, user bookings, issue refunds etc.
+
+
+Let me know if there's anything else I can add to make it better.

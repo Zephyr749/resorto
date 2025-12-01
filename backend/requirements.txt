@@ -1,0 +1,14 @@
+pymongo
+python-dotenv
+bcrypt
+fastapi
+pydantic
+pyjwt
+uvicorn[standard]
+pytest
+pytest-asyncio
+httpx
+mongomock
+python-multipart
+email-validator
+razorpay

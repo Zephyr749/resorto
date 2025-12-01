@@ -81,4 +81,6 @@ local_settings.py
 # Logs
 *.log
 logs/
-modules/common/logs.txt
+modules/common/logs.txt*.DS_Store
+.DS_Store
+.env.root.backup

@@ -1,0 +1,37 @@
+2025-09-27 02:47:30,998 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 02:47:32,206 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 02:50:57,008 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 02:50:58,800 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 02:57:31,147 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 02:57:32,730 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 02:57:33,493 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 02:57:34,181 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 02:57:34,487 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 02:57:35,040 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 02:57:35,708 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 03:03:34,016 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 03:03:35,062 - modules.auth.auth_controller - 29 - ERROR - error: Invalid salt
+2025-09-27 03:03:51,778 - modules.auth.auth_controller - 15 - INFO - response: user=User(id='68d706bf6052df045e4c189e', email='test@example.com', fullName='test example', firstName='test', lastName='example') token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGQ3MDZiZjYwNTJkZjA0NWU0YzE4OWUiLCJleHBpcmF0aW9uVGltZSI6IjIwMjUtMTAtMDMgMjE6MzM6NTEuNzc3NTQwKzAwOjAwIn0.u3Xtha4P-bG21Z_eLWKJ1SIUq9m3n6zaj__63gBN5IU'
+2025-09-27 03:04:08,692 - modules.auth.auth_controller - 32 - ERROR - error: 'dict' object has no attribute 'dict'
+2025-09-27 03:04:48,905 - modules.auth.auth_controller - 32 - ERROR - error: 'dict' object has no attribute 'dict'
+2025-09-27 03:11:09,036 - modules.auth.auth_controller - 32 - ERROR - error: 'dict' object has no attribute 'dict'
+2025-09-27 03:11:41,815 - modules.auth.auth_controller - 32 - ERROR - error: 'dict' object has no attribute 'dict'
+2025-09-27 03:17:48,182 - modules.auth.auth_controller - 32 - ERROR - error: 'dict' object has no attribute 'firstName'
+2025-09-27 03:19:12,617 - modules.auth.auth_controller - 15 - INFO - response: user=User(id='68d70a58075c6b1cc95070a2', email='test1@example.com', fullName='test example', firstName='test', lastName='example') token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGQ3MGE1ODA3NWM2YjFjYzk1MDcwYTIiLCJleHBpcmF0aW9uVGltZSI6IjIwMjUtMTAtMDMgMjE6NDk6MTIuNjE3NzQyKzAwOjAwIn0.egf7O2dMp9kvPYWD4plkB52AbxsomJum7lYA5ezK0P8'
+2025-11-29 22:36:54,596 - modules.auth.auth_controller - 17 - INFO - response: user=User(id='692b282ef376ca2acebfb1fb', email='john.doe@example.com', fullName='John Doe', firstName='John', lastName='Doe') token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTJiMjgyZWYzNzZjYTJhY2ViZmIxZmIiLCJleHBpcmF0aW9uVGltZSI6IjIwMjUtMTItMDYgMTc6MDY6NTQuNTk2MDQ4KzAwOjAwIn0.wHMvTVniVTYPSoliVWnla9nRt2QwRq1AIod6fa3yEGk'
+2025-11-29 22:37:39,945 - modules.auth.auth_controller - 34 - ERROR - error: 401: Invalid credentials
+2025-11-29 22:43:01,969 - modules.auth.auth_controller - 39 - INFO - User logged in: john.doe@example.com
+2025-11-29 22:46:19,153 - modules.auth.auth_controller - 37 - INFO - User logged in: john.doe@example.com
+2025-11-29 22:46:24,526 - modules.auth.auth_controller - 41 - ERROR - Login failed for john.doe@example.com: Invalid credentials
+2025-11-30 02:14:21,363 - modules.auth.auth_controller - 20 - ERROR - Validation error: Password does not contain at least one uppercase letter
+2025-11-30 02:14:31,698 - modules.auth.auth_controller - 17 - INFO - User registered: john@example.com
+2025-11-30 02:15:01,204 - modules.auth.auth_controller - 41 - ERROR - Login failed for john@example.com: Invalid credentials
+2025-11-30 02:22:20,627 - modules.auth.auth_controller - 41 - ERROR - Login failed for john@example.com: Invalid credentials
+2025-11-30 02:24:47,730 - modules.auth.auth_controller - 41 - ERROR - Login failed for john@example.com: Invalid credentials
+2025-12-01 19:09:05,026 - modules.auth.auth_controller - 41 - ERROR - Login failed for john@example.com: Invalid credentials
+2025-12-01 19:09:09,614 - modules.auth.auth_controller - 25 - ERROR - Error: User already exists
+2025-12-01 19:09:20,236 - modules.auth.auth_controller - 41 - ERROR - Login failed for john@example.com: Invalid credentials
+2025-12-01 19:09:30,746 - modules.auth.auth_controller - 37 - INFO - User logged in: john@example.com
+2025-12-01 19:09:53,537 - modules.auth.auth_controller - 37 - INFO - User logged in: john@example.com
+2025-12-01 19:23:22,648 - modules.auth.auth_controller - 90 - INFO - Password changed for user: 692b5b2f10c082c4566bd084
+2025-12-01 19:23:30,051 - modules.auth.auth_controller - 41 - ERROR - Login failed for john@example.com: Invalid credentials
